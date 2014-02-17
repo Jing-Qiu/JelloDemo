@@ -1,0 +1,36 @@
+<world>
+  <materials>
+    <material name="dark gray" density="1" friction="0.9" restitution="0.9" cr="0.2" cg="0.2" cb="0.2" />
+    <material name="light gray" density="1" friction="0.9" restitution="0.9" cr="0.7" cg="0.7" cb="0.7" />
+    <material name="dirt"         density="0" friction="0.9" restitution="0.4" cr="0.8" cg="0.6" cb="0.4" />
+  </materials>
+  <bodies>
+    <ground>
+      <bodymaterial name="dirt" />
+    </ground>
+    
+    <sphere r="0.2"  >
+      
+      <bodymaterial name="dark gray" />
+    </sphere>
+
+    <cylinder r="0.1" sx="0.08" sy="0.0" sz="0.18" ex="0.77" ey="1.0" ez="1.85"></cylinder>
+
+    <cylinder r="0.1" sx="-0.20" sy="0.0" sz="-0.00" ex="-2.00" ey="1.0" ez="-0.00"></cylinder>
+
+    <box hx="0.2" hy="0.2" hz="0.2" >
+      <pos x="0.8" y="0.1" z="-1.3"></pos>
+      <bodymaterial name="light gray" />
+      
+    </box>
+    
+    
+    
+
+
+
+
+  </bodies>
+</world>
+
+

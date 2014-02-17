@@ -1,0 +1,21 @@
+﻿生成启动时间为 2014/2/10 15:20:37。
+     1>项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\tinyxml\tinyxmlSTL.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“.\Release_STL\tinyxmlSTL.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         所有输出均为最新。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(1151,5): warning MSB8012: TargetPath(G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\tinyxml\.\tinyxmlSTL.lib) 与 Library 的 OutputFile 属性值(G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\tinyxml\tinyxml_STL.lib)不匹配。这可能导致项目生成不正确。若要更正此问题，请确保 $(OutDir)、$(TargetName) 和 $(TargetExt) 属性值与 %(Lib.OutputFile) 中指定的值匹配。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(1153,5): warning MSB8012: TargetName(tinyxmlSTL) 与 Library 的 OutputFile 属性值(tinyxml_STL)不匹配。这可能导致项目生成不正确。若要更正此问题，请确保 $(OutDir)、$(TargetName) 和 $(TargetExt) 属性值与 %(Lib.OutputFile) 中指定的值匹配。
+       Lib:
+         所有输出均为最新。
+         tinyxmlSTL.vcxproj -> G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\tinyxml\.\tinyxmlSTL.lib
+       BscMake:
+         所有输出均为最新。
+       FinalizeBuildStatus:
+         正在删除文件“.\Release_STL\tinyxmlSTL.unsuccessfulbuild”。
+         正在对“.\Release_STL\tinyxmlSTL.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\tinyxml\tinyxmlSTL.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.96
