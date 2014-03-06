@@ -7,6 +7,7 @@
 #include <IL/il.h>
 #include <IL/ilu.h>
 #include <IL/ilut.h>
+#include <iostream>
 
 #include "jelloMesh.h"
 #include "world.h"
@@ -14,9 +15,19 @@
 
 JelloMesh theJello;
 Camera theCamera;
-World theWorld("worlds/cylinders.xml");
+World theWorld("worlds/ground.xml");
 //World theWorld("worlds/ground.xml");
 mmc::FpsTracker theFpsTracker;
+
+vec3 GetOGLPos(int x, int y);
+vec3 pressPosition = vec3();
+vec3 forcePosition = vec3();
+
+vec3 openGLPosition = vec3();
+
+bool pressFlag = false;
+int particleIndex = -1;
+int a = -1;
 
 // UI Helpers
 int lastX = 0, lastY = 0;
@@ -87,13 +98,40 @@ void onMouseMotionCb(int x, int y)
    bool moveLeftRight = abs(deltaX) > abs(deltaY);
    bool moveUpDown = !moveLeftRight;
 
-   if (theButtonState == GLUT_LEFT_BUTTON)  // Rotate
+
+   if (theButtonState == GLUT_LEFT_BUTTON)  // Rotate    //use this to detect if it clicks on Particles
    {
-      if (moveLeftRight && deltaX > 0) theCamera.orbitLeft(deltaX);
+	    openGLPosition = GetOGLPos(x,y);
+
+      
+	  if (moveLeftRight && deltaX > 0) theCamera.orbitLeft(deltaX);
       else if (moveLeftRight && deltaX < 0) theCamera.orbitRight(-deltaX);
       else if (moveUpDown && deltaY > 0) theCamera.orbitUp(deltaY);
       else if (moveUpDown && deltaY < 0) theCamera.orbitDown(-deltaY);
+	  
+
+       a = theJello.onMouseCheck(openGLPosition);
+	  //cout<<openGLPosition[0]<<"  "<<openGLPosition[1]<<"   " <<openGLPosition[2];
+	  if(a!=(-1))
+	  {
+	  pressPosition = openGLPosition;
+	  pressFlag = true;
+	  particleIndex = a;
+	  std::cout << "Pick up particle"<<particleIndex<<"\n";
+	  }
+
+	  //if(pressFlag)
+	  if(a==(-1)&&pressFlag)
+	  {
+	  forcePosition = openGLPosition;
+	  pressFlag = false;
+	  // std::cout << "drag up particle";
+	  theJello.dragJello(pressPosition,forcePosition, particleIndex);
+	  }
+
+
    }
+
    else if (theButtonState == GLUT_MIDDLE_BUTTON) // Zoom
    {
        if (theModifierState & GLUT_ACTIVE_ALT) // camera move
@@ -271,7 +309,7 @@ void onDrawCb()
 
     theWorld.Draw();
     theJello.Draw(cpos);
-    drawOverlay();
+    //drawOverlay();
     glutSwapBuffers();
 
 	
@@ -282,6 +320,7 @@ int loadJelloParameters(char* filename) throw (char*)
 {
 	ifstream config;
 	config.open(filename);
+	
 	if (config.is_open())
 	{
 		string line;
@@ -325,21 +364,25 @@ int loadJelloParameters(char* filename) throw (char*)
 			}
 		}
 		cout << "Loaded jello parameters from " << filename << endl;
+		theJello.Reset();
 		return 0;    // normal
 	} else {
 		return 1;    // fail to open file
 	}
 }
 
-/*
-// transfer mouse position to OpenGL position 
-vec3 GetOGLPos(int x, int y)
+
+// transfer mouse position to OpenGL position  Calling this from the onMouseMotionCb function
+
+ vec3 GetOGLPos(int x, int y)
 {
     GLint viewport[4];
     GLdouble modelview[16];
     GLdouble projection[16];
-    GLfloat winX, winY, winZ;
-    GLdouble posX, posY, posZ;
+    //GLdouble winX, winY, winZ;
+	GLfloat winX, winY, winZ;
+    double posX1, posY1, posZ1;
+	double posX2, posY2, posZ2;
  
     glGetDoublev( GL_MODELVIEW_MATRIX, modelview );
     glGetDoublev( GL_PROJECTION_MATRIX, projection );
@@ -347,13 +390,18 @@ vec3 GetOGLPos(int x, int y)
  
     winX = (float)x;
     winY = (float)viewport[3] - (float)y;
-    glReadPixels( x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ );
- 
-    gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
- 
-    return vec3(posX, posY, posZ);
+    
+	glReadPixels( x, (int)winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ );
+    //winZ = 0.0f;
+    gluUnProject( winX, winY, winZ, modelview, projection, viewport, &posX1, &posY1, &posZ1);
+	//cout<<"position!";
+	//winZ = 1.0f;
+	//gluUnProject( winX, winY, 10.0, modelview, projection, viewport, &posX2, &posY2, &posZ2);
+    return vec3(posX1, posY1, posZ1);
+	
 }
 
+/*
 void mouseCoordinates()
 {
 	POINT mouse;                        // Stores The X And Y Coords For The Current Mouse Position
@@ -369,6 +417,7 @@ void mouseCoordinates()
 
 }
 */
+
 void init(void)
 {
     initCamera();

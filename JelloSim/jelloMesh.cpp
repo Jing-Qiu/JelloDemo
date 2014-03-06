@@ -2,13 +2,15 @@
 #include <GL/glut.h>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
-// Initialize parameters
+
+// Initialize parameters for basic features
 double JelloMesh::g_structuralKs = 5000; 
 double JelloMesh::g_structuralKd = 10.0; 
 double JelloMesh::g_shearKs = 4000;
 double JelloMesh::g_shearKd = 10.0;
-double JelloMesh::g_bendKs = 4000.0;
+double JelloMesh::g_bendKs = 4000;
 double JelloMesh::g_bendKd = 10.0;
 double JelloMesh::g_penaltyKs = 0.0;
 double JelloMesh::g_penaltyKd = 0.0;
@@ -25,12 +27,24 @@ double JelloMesh::g_penaltyKs = 0.0;
 double JelloMesh::g_penaltyKd = 0.0;
 */
 
+//Initialize parameters for Mouse dragging
+/*
+double JelloMesh::g_structuralKs = 50000; 
+double JelloMesh::g_structuralKd = 1000.0; 
+double JelloMesh::g_shearKs = 40000;
+double JelloMesh::g_shearKd = 1000.0;
+double JelloMesh::g_bendKs = 40000;
+double JelloMesh::g_bendKd = 1000.0;
+double JelloMesh::g_penaltyKs = 0.0;
+double JelloMesh::g_penaltyKd = 0.0;
+*/
+
 const float Threshold = 0.15;
 const double VirtualKs = 5000;
 const double VirtualKd = 10.0;
 const double VirtualRestLen = 0;
 
-
+double cellSize;
 
 JelloMesh::JelloMesh() :     
     m_integrationType(JelloMesh::RK4), m_drawflags(MESH | STRUCTURAL),
@@ -177,6 +191,76 @@ void JelloMesh::GetCell(int idx, int& i, int &j, int& k) const
     k = (int) FLOOR(tmp/rows);
 }
 
+int JelloMesh::onMouseCheck(vec3 point)
+{
+    ParticleGrid& g = m_vparticles;
+
+
+	//int a = -1;
+	
+    for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+				if(GetParticle(g,i,j,k).position[0]<=(point[0]+cellSize)&&GetParticle(g,i,j,k).position[0]>=(point[0]-cellSize)
+					&&GetParticle(g,i,j,k).position[1]<=(point[1]+cellSize)&&GetParticle(g,i,j,k).position[1]>=(point[1]-cellSize))
+				    //&&GetParticle(g,i,j,k).position[2]<=(point[2]+cellSize)&&GetParticle(g,i,j,k).position[2]>=(point[2]-cellSize))
+				{
+				    //std::cout << "Got it!";
+					//a = GetParticle(g,i,j,k).index;
+				    return GetParticle(g,i,j,k).index;
+				}
+				//else a=-1;
+				//GetParticle(g,i,j,k).userforce = vec3();
+			}
+		}
+	}
+
+	//std::cout << "Output sentence";
+	return -1;
+}
+
+void JelloMesh::dragJello(vec3 start, vec3 end, int index)
+{
+	if(index == (-1)) return;
+	ParticleGrid& g = m_vparticles;
+	//Particle& pt = GetParticle(g, index);
+	//std::cout << "Drag!";
+	cout<<start[0]<<"  "<<start[1]<<"   " <<start[2]<<"\n";
+	cout<<end[0]<<"  "<<end[1]<<"   " <<end[2]<<"\n";
+	 for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+				if(GetParticle(g,i,j,k).index == index)
+	            GetParticle(g,i,j,k).userforce  = VirtualKs*(end-start)+VirtualKd*(GetParticle(g,i,j,k).velocity*(end - start).Normalize())*(end - start).Normalize();
+				else  GetParticle(g,i,j,k).userforce = vec3(0,0,0);
+			}
+		}
+	 }
+
+}
+
+void JelloMesh::ResolveDragging(ParticleGrid& grid)
+{
+	ParticleGrid& g = m_vparticles;
+	 for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+             GetParticle(g,i,j,k).force  += GetParticle(g,i,j,k).userforce;
+			}
+		}
+	 }
+}
+
+
 void JelloMesh::InitJelloMesh()
 {
     m_vsprings.clear();
@@ -188,6 +272,8 @@ void JelloMesh::InitJelloMesh()
     float wcellsize = m_width / m_cols;
     float hcellsize = m_height / m_rows;
     float dcellsize = m_depth / m_stacks;
+
+	cellSize = (double) wcellsize;
     
     for (int i = 0; i < m_rows+1; i++)
     {
@@ -202,9 +288,21 @@ void JelloMesh::InitJelloMesh()
             }
         }
     }
-
+	
+	ParticleGrid& g = m_vparticles;
+	//initialize userforce
+	 for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+				GetParticle(g,i,j,k).userforce = vec3(0,0,0);
+			}
+		}
+	 }
     // Setup structural springs
-    ParticleGrid& g = m_vparticles;
+    
     for (int i = 0; i < m_rows+1; i++)
     {
         for (int j = 0; j < m_cols+1; j++)
@@ -313,6 +411,7 @@ void JelloMesh::InitJelloMesh()
 		}
 	 }
 	 */
+
     // Init mesh geometry
     m_mesh.clear();
     m_mesh.push_back(FaceMesh(*this,XLEFT));
@@ -322,6 +421,8 @@ void JelloMesh::InitJelloMesh()
     m_mesh.push_back(FaceMesh(*this,ZFRONT));
     m_mesh.push_back(FaceMesh(*this,ZBACK));
 }
+
+
 
 void JelloMesh::AddStructuralSpring(Particle& p1, Particle& p2)
 {
@@ -481,11 +582,13 @@ void JelloMesh::Draw(const vec3& eyePos)
 void JelloMesh::Update(double dt, const World& world, const vec3& externalForces)
 {
     m_externalForces = externalForces;
+   
 
 	CheckForCollisions(m_vparticles, world);
 	ComputeForces(m_vparticles);
 	ResolveContacts(m_vparticles);
 	ResolveCollisions(m_vparticles);
+	ResolveDragging(m_vparticles);
 
     switch (m_integrationType)
     {
@@ -561,7 +664,8 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
             for (int k = 0; k < m_stacks+1; k++)
             {
                 Particle& p = GetParticle(grid, i,j,k);
-                p.force = m_externalForces * p.mass;
+                //p.force = m_externalForces * p.mass+p.userforce;
+				p.force = m_externalForces * p.mass;
             }
         }
     }
@@ -583,6 +687,22 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 					*(a.position - b.position)/((a.position - b.position).Length()) + b.force;
 
     }
+	
+	/*
+	//Compute user force
+	for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+                Particle& p = GetParticle(grid, i,j,k);
+                //p.force = m_externalForces * p.mass+p.userforce;
+				p.force +=p.userforce;
+            }
+        }
+    }
+	*/
 }
 
 void JelloMesh::ResolveContacts(ParticleGrid& grid)

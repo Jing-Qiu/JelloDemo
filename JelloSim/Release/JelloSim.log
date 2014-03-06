@@ -1,17 +1,69 @@
-﻿生成启动时间为 2014/2/16 21:43:50。
-     1>项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\JelloSim\JelloSim.vcxproj”在节点 2 上(build 个目标)。
+﻿生成启动时间为 2014/2/20 16:27:13。
+     1>项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\JelloSim\JelloSim.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在对“Release\JelloSim.unsuccessfulbuild”执行 Touch 任务。
+         正在创建“Release\JelloSim.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         所有输出均为最新。
+         D:\Visual studio 2010\VC\bin\CL.exe /c /I..\DevIL1.6.7\include /I..\tinyxml /I..\glut /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(234): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+                 g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(314): 参见对正在编译的类 模板 实例化“math::matrix<T>”的引用
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(235): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(242): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(243): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(244): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(247): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(258): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(259): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(260): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(261): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(262): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(264): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(444): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(454): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(516): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(529): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(553): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(586): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(611): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(620): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(646): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(663): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(670): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(677): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(701): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(709): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(756): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(885): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(938): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(972): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(987): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(1153): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>g:\upenn spring 2014\physical based animation\hw1\jellosim_jing qiu\jellosim\matrix.h(1161): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>main.cpp(256): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Visual studio 2010\VC\include\stdio.h(371) : 参见“sprintf”的声明
+     1>main.cpp(311): warning C4290: 忽略 C++ 异常规范，但指示函数不是 __declspec(nothrow)
+     1>main.cpp(322): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Visual studio 2010\VC\include\string.h(197) : 参见“strtok”的声明
+     1>main.cpp(323): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Visual studio 2010\VC\include\string.h(197) : 参见“strtok”的声明
+     1>main.cpp(375): warning C4101: “winZ”: 未引用的局部变量
        Link:
-         所有输出均为最新。
-         JelloSim.vcxproj -> G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\Release\JelloSim.exe
+         D:\Visual studio 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\Release\JelloSim.exe" /NOLOGO /LIBPATH:..\DevIL1.6.7\lib /LIBPATH:..\tinyxml /LIBPATH:..\glut DevIL.lib ilu.lib ilut.lib glut32.lib tinyxml_STL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\JelloSim.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\Release\JelloSim.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\Release\JelloSim.lib" /MACHINE:X86 Release\camera.obj
+         Release\fps.obj
+         Release\jelloMesh.obj
+         Release\main.obj
+         Release\vec.obj
+         Release\world.obj
+         正在生成代码
+         已完成代码的生成
+         JelloSim.vcxproj -> G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\Release\JelloSim.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\Release\JelloSim.exe;#1" /manifest Release\JelloSim.exe.intermediate.manifest
        FinalizeBuildStatus:
          正在删除文件“Release\JelloSim.unsuccessfulbuild”。
          正在对“Release\JelloSim.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_basecode\JelloSim\JelloSim.vcxproj”(build 个目标)的操作。
+     1>已完成生成项目“G:\UPenn Spring 2014\Physical Based Animation\HW1\JelloSim_Jing Qiu\JelloSim\JelloSim.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.04
+已用时间 00:00:03.70

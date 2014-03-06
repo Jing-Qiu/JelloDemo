@@ -49,7 +49,11 @@ public:
 
     int GetIndex(int i, int j, int k) const;
     void GetCell(int idx, int& i, int &j, int &k) const;
-
+	
+	// Check mouse press on particles
+	virtual int onMouseCheck(vec3 point);
+		// drag particle by mouse
+	virtual void dragJello(vec3 start, vec3 end, int index);
 
 protected:
 
@@ -82,10 +86,14 @@ protected:
 	virtual bool SphereIntersection(Particle& p, World::Sphere* sphere, Intersection& intersection);
 	virtual bool CubeIntersection(Particle& p, World::Cube* cube, Intersection& intersection);
 
+	virtual void ResolveDragging(ParticleGrid& grid);
+
     virtual void ComputeForces(ParticleGrid& grid);
 	virtual void EulerIntegrate(double dt);
 	virtual void MidPointIntegrate(double dt);
 	virtual void RK4Integrate(double dt);
+
+
 
     enum Face {XLEFT, XRIGHT, YTOP, YBOTTOM, ZFRONT, ZBACK};
     class FaceMesh
@@ -108,23 +116,24 @@ protected:
     void DrawCollisionNormals();
     void DrawForces();
 
-protected:
+public:
 
     int m_cols, m_rows, m_stacks;
     float m_width, m_height, m_depth;
     unsigned int m_drawflags;
     vec3 m_externalForces;
-
+	//vec3 m_userForces;
+	ParticleGrid m_vparticles;
     IntegrationType m_integrationType;
     std::vector<FaceMesh> m_mesh;
-    ParticleGrid m_vparticles;
+    
 
     std::vector<Spring> m_vsprings;
     std::vector<Intersection> m_vcontacts;
     std::vector<Intersection> m_vcollisions;
 
 public:
-
+	
     static double g_structuralKs;
     static double g_structuralKd;
     static double g_shearKs;
@@ -152,6 +161,7 @@ protected:
         vec3 position;
         vec3 velocity;
         vec3 force;
+		vec3 userforce;
         double mass;
 
         static Particle EMPTY;
