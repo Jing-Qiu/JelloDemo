@@ -55,6 +55,8 @@ public:
 		// drag particle by mouse
 	virtual void dragJello(vec3 start, vec3 end, int index);
 
+	virtual void clearUserForces();
+
 protected:
 
     class Particle;

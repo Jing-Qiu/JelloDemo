@@ -6,11 +6,11 @@
 
 
 // Initialize parameters for basic features
-double JelloMesh::g_structuralKs = 5000; 
+double JelloMesh::g_structuralKs = 6000; 
 double JelloMesh::g_structuralKd = 10.0; 
-double JelloMesh::g_shearKs = 4000;
+double JelloMesh::g_shearKs = 5000;
 double JelloMesh::g_shearKd = 10.0;
-double JelloMesh::g_bendKs = 4000;
+double JelloMesh::g_bendKs = 5000;
 double JelloMesh::g_bendKd = 10.0;
 double JelloMesh::g_penaltyKs = 0.0;
 double JelloMesh::g_penaltyKd = 0.0;
@@ -40,9 +40,12 @@ double JelloMesh::g_penaltyKd = 0.0;
 */
 
 const float Threshold = 0.15;
-const double VirtualKs = 5000;
+const double VirtualKs = 6000;
 const double VirtualKd = 10.0;
 const double VirtualRestLen = 0;
+
+const double externalKs = 3000;
+const double externalKd = 5.0;
 
 double cellSize;
 
@@ -237,7 +240,7 @@ void JelloMesh::dragJello(vec3 start, vec3 end, int index)
             for (int k = 0; k < m_stacks+1; k++)
             {
 				if(GetParticle(g,i,j,k).index == index)
-	            GetParticle(g,i,j,k).userforce  = VirtualKs*(end-start)+VirtualKd*(GetParticle(g,i,j,k).velocity*(end - start).Normalize())*(end - start).Normalize();
+	            GetParticle(g,i,j,k).userforce  = externalKs*(end-start)+externalKd*(GetParticle(g,i,j,k).velocity*(end - start).Normalize())*(end - start).Normalize();
 				else  GetParticle(g,i,j,k).userforce = vec3(0,0,0);
 			}
 		}
@@ -255,11 +258,27 @@ void JelloMesh::ResolveDragging(ParticleGrid& grid)
             for (int k = 0; k < m_stacks+1; k++)
             {
              GetParticle(g,i,j,k).force  += GetParticle(g,i,j,k).userforce;
+			 GetParticle(g,i,j,k).userforce = vec3(0,0,0);
 			}
 		}
 	 }
 }
 
+ void JelloMesh::clearUserForces()
+{
+ ParticleGrid& g = m_vparticles;
+	 for (int i = 0; i < m_rows+1; i++)
+    {
+        for (int j = 0; j < m_cols+1; j++)
+        {
+            for (int k = 0; k < m_stacks+1; k++)
+            {
+             GetParticle(g,i,j,k).userforce = vec3(0,0,0);
+			}
+		}
+	 }
+ 
+ }
 
 void JelloMesh::InitJelloMesh()
 {

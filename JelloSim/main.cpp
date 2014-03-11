@@ -103,30 +103,40 @@ void onMouseMotionCb(int x, int y)
    {
 	    openGLPosition = GetOGLPos(x,y);
 
-      
+      /*
 	  if (moveLeftRight && deltaX > 0) theCamera.orbitLeft(deltaX);
       else if (moveLeftRight && deltaX < 0) theCamera.orbitRight(-deltaX);
       else if (moveUpDown && deltaY > 0) theCamera.orbitUp(deltaY);
       else if (moveUpDown && deltaY < 0) theCamera.orbitDown(-deltaY);
-	  
+	  */
 
        a = theJello.onMouseCheck(openGLPosition);
 	  //cout<<openGLPosition[0]<<"  "<<openGLPosition[1]<<"   " <<openGLPosition[2];
+
 	  if(a!=(-1))
 	  {
 	  pressPosition = openGLPosition;
 	  pressFlag = true;
 	  particleIndex = a;
 	  std::cout << "Pick up particle"<<particleIndex<<"\n";
+	  theJello.clearUserForces();
 	  }
 
 	  //if(pressFlag)
-	  if(a==(-1)&&pressFlag)
+	  if(a==(-1))
 	  {
-	  forcePosition = openGLPosition;
-	  pressFlag = false;
+	  forcePosition = openGLPosition; 
 	  // std::cout << "drag up particle";
+	  if(particleIndex==(-1))
+	  {
+	  pressFlag = false;
+	  }
+
+	  if(pressFlag)
+	  {
 	  theJello.dragJello(pressPosition,forcePosition, particleIndex);
+	  }
+	  
 	  }
 
 
